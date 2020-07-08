@@ -3,7 +3,7 @@ import re
 from rest_framework import serializers
 from rest_framework_jwt.serializers import jwt_payload_handler, jwt_encode_handler
 
-from api.models import User
+from api.models import User, Computer
 
 re_email = r'^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$'
 re_phone = r'1[3-9][0-9]{9}'
@@ -48,3 +48,9 @@ class UserModelSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError('用户名或密码错误')
 
         return attrs
+
+
+class ComputerModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Computer
+        fields = ("name", "price", "brand")
